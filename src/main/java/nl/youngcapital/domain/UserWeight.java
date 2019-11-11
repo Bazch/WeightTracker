@@ -1,8 +1,6 @@
 package nl.youngcapital.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -10,11 +8,12 @@ public class UserWeight {
 
    //VARIABLES
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-    @ManyToOne
+//    @ManyToOne
+//    User user;
     int userId;
-
     private float value;
     private LocalDate date;
 
@@ -27,8 +26,11 @@ public class UserWeight {
     }
 
     //GETTERS & SETTERS
-    public int getId() {
+    public long getId() {
         return id;
+    }
+    public void setId(long id) {
+        this.id = id;
     }
     public int getUserId() {
         return userId;
