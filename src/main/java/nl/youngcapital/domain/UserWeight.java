@@ -11,18 +11,19 @@ public class UserWeight {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-//    @ManyToOne
-//    User user;
-    int userId;
+    @ManyToOne(fetch=FetchType.LAZY)
+    private User user;
     private float value;
     private LocalDate date;
 
     //CONSTRUCTORS
-    public UserWeight(){}
-    public UserWeight(int userId, float weight){
-    this.userId = userId;
-    this.value = weight;
-    this.date = LocalDate.now();
+    public UserWeight(){
+        this.date = LocalDate.now();
+    }
+    public UserWeight(float value, User user){
+        this.value = value;
+        this.user = user;
+        this.date = LocalDate.now();
     }
 
     //GETTERS & SETTERS
@@ -31,12 +32,6 @@ public class UserWeight {
     }
     public void setId(long id) {
         this.id = id;
-    }
-    public int getUserId() {
-        return userId;
-    }
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
     public float getValue() {
         return value;
@@ -49,5 +44,11 @@ public class UserWeight {
     }
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
     }
 }

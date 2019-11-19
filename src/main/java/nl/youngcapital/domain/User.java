@@ -1,10 +1,12 @@
 package nl.youngcapital.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -15,17 +17,21 @@ public class User {
     private long id;
     private String name;
     private String email;
+
+    @OneToMany (mappedBy = "user")
+    private Set<UserWeight> weights;
+
+
 //    private String userName;
 //    private String password;
-//    private Date birthDay;
+//    private LocalDate birthDay;
 //    private char sex;
 //    private double length;
 
 
     //CONSTRUCTORS
     public User(){}
-
-    public User(String name, String email) {
+    public User(String name, String email){
         this.name = name;
         this.email = email;
     }
@@ -47,6 +53,13 @@ public class User {
     public void setname(String name) {
         this.name = name;
     }
+
+    public Set<UserWeight> getWeights() {
+        return weights;
+    }
+    public void setWeights(Set<UserWeight> weights) {
+        this.weights = weights;
+    }
     //    public String getUserName() {
 //        return userName;
 //    }
@@ -65,10 +78,10 @@ public class User {
 //    public void setLastName(String lastName) {
 //        this.lastName = lastName;
 //    }
-//    public Date getBirthDay() {
+//    public LocalDate getBirthDay() {
 //        return birthDay;
 //    }
-//    public void setBirthDay(Date birthDay) {
+//    public void setBirthDay(LocalDate birthDay) {
 //        this.birthDay = birthDay;
 //    }
 //    public char getSex() {
@@ -83,6 +96,7 @@ public class User {
 //    public void setLength(double length) {
 //        this.length = length;
 //    }
+
 
     //TOSTRING OVERRIDE
 

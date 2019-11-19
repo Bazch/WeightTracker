@@ -1,30 +1,60 @@
 package nl.youngcapital.api;
 
 import nl.youngcapital.domain.User;
+import nl.youngcapital.domain.UserWeight;
 import nl.youngcapital.repository.UserRepository;
+import nl.youngcapital.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:4200")
-
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
-    private final UserRepository userRepository;
+    @Autowired
+    UserService userService;
 
     @GetMapping("/users")
     public List<User> getUsers() {
-        return (List<User>) userRepository.findAll();
+        return (List<User>) userService.findAll();
+    }
+
+    @GetMapping (path ="/users/{id}")
+    public ResponseEntity<Optional<User>> apiGetById(
+            @PathVariable long id) {
+        Optional<User> user = userService.findById(id);
+        return new ResponseEntity<>(
+                user,
+                user.isPresent()
+                        ? HttpStatus.OK
+                        : HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("/users")
     void addUser(@RequestBody User user) {
-        userRepository.save(user);
+        userService.save(user);
     }
+    @PutMapping(path="/users/{id}")		// Update
+    public ResponseEntity<User> apiUpdate(
+            @PathVariable("users/id") long id,
+            @RequestBody User user) {
+        if (user == null || user.getId() != id)
+            return new ResponseEntity<>(
+                    HttpStatus.BAD_REQUEST);
+
+        Optional<User> oldUser = userService.findById(user.getId());
+        if (!oldUser.isPresent()) {
+            return new ResponseEntity<>(
+                    HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(
+                userService.save(user),
+                HttpStatus.OK);
+    }
+
 }
