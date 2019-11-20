@@ -1,7 +1,12 @@
 package nl.youngcapital.domain;
 
+
+import nl.youngcapital.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Entity
 public class UserWeight {

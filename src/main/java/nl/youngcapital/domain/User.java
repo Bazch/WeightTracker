@@ -18,9 +18,8 @@ public class User {
     private String name;
     private String email;
 
-    @OneToMany (mappedBy = "user")
-    private Set<UserWeight> weights;
-
+//    @OneToMany (mappedBy = "user")
+//    private Set<UserWeight> weights;
 
 //    private String userName;
 //    private String password;
@@ -53,14 +52,15 @@ public class User {
     public void setname(String name) {
         this.name = name;
     }
+//    public Set<UserWeight> getWeights() {
+//        return weights;
+//    }
+//    public void setWeights(Set<UserWeight> weights) {
+//        this.weights = weights;
+//    }
 
-    public Set<UserWeight> getWeights() {
-        return weights;
-    }
-    public void setWeights(Set<UserWeight> weights) {
-        this.weights = weights;
-    }
-    //    public String getUserName() {
+
+//    public String getUserName() {
 //        return userName;
 //    }
 //    public void setUserName(String userName) {
