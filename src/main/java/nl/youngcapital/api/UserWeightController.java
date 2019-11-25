@@ -18,15 +18,30 @@ public class UserWeightController {
     @Autowired
     UserWeightService userWeightService;
 
-    @GetMapping("/weights")
-    public List<UserWeight> getUsers() {
-        return (List<UserWeight>) userWeightService.findAll();
+//    @GetMapping("/weights")
+//    public List<UserWeight> getUserWeights() {
+//        return (List<UserWeight>) userWeightService.findAll();
+//    }
+
+    @GetMapping ("/weights")
+    public ResponseEntity<Iterable<UserWeight>> apiGetAll() {
+        return new ResponseEntity<Iterable<UserWeight>>(
+                userWeightService.findAll(),
+                HttpStatus.OK);
     }
 
     @PostMapping("/weights")
-    void addUser(@RequestBody UserWeight userWeight) {
+    void addUserWeight(@RequestBody UserWeight userWeight) {
         userWeightService.save(userWeight);
     }
+
+    @GetMapping(path = "/users/{name}/weights")
+    public Iterable<UserWeight> findByUserName(@PathVariable String name){return userWeightService.findByUserName(name);}
+
+//    @GetMapping(path = "/users/{id}/weights")
+//    public Iterable<UserWeight> findByUserId(@PathVariable long id){return userWeightService.findByUserId(id);}
+
+
 
     @GetMapping (path ="/weights/{id}")
     public ResponseEntity<Optional<UserWeight>> apiGetById(

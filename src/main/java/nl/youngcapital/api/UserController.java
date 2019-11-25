@@ -14,17 +14,24 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping(path = "users")
 public class UserController {
 
     @Autowired
     UserService userService;
 
-    @GetMapping("/users")
+    @GetMapping
     public List<User> getUsers() {
         return (List<User>) userService.findAll();
     }
 
-    @GetMapping (path ="/users/{id}")
+
+    @GetMapping(path = "/name/{name}")
+    public Iterable<User> findByName(@PathVariable String name) {
+        return userService.findByName(name);
+    }
+
+    @GetMapping (path ="/{id}")
     public ResponseEntity<Optional<User>> apiGetById(
             @PathVariable long id) {
         Optional<User> user = userService.findById(id);
@@ -35,11 +42,12 @@ public class UserController {
                         : HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/users")
+    @PostMapping
     void addUser(@RequestBody User user) {
         userService.save(user);
     }
-    @PutMapping(path="/users/{id}")		// Update
+
+    @PutMapping(path="/{id}")		// Update
     public ResponseEntity<User> apiUpdate(
             @PathVariable("users/id") long id,
             @RequestBody User user) {

@@ -24,4 +24,9 @@ public class UserService {
     public Optional<User> findById(Long id) {
         return userRepository.findById(id);
     }
+
+    public Iterable<User> findByName(String name) {
+        return userRepository.findByName(name);
+    }
+
 }
