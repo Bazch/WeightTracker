@@ -18,11 +18,6 @@ public class UserWeightController {
     @Autowired
     UserWeightService userWeightService;
 
-//    @GetMapping("/weights")
-//    public List<UserWeight> getUserWeights() {
-//        return (List<UserWeight>) userWeightService.findAll();
-//    }
-
     @GetMapping ("/weights")
     public ResponseEntity<Iterable<UserWeight>> apiGetAll() {
         return new ResponseEntity<Iterable<UserWeight>>(
@@ -31,7 +26,8 @@ public class UserWeightController {
     }
 
     @PostMapping("/weights")
-    void addUserWeight(@RequestBody UserWeight userWeight) {
+    void addUserWeight(@RequestBody UserWeight u) {
+        UserWeight userWeight = new UserWeight(u.getUser() , u.getValue());
         userWeightService.save(userWeight);
     }
 

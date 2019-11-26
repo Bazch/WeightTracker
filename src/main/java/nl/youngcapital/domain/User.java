@@ -17,32 +17,19 @@ public class User {
     private long id;
     private String name;
     private String email;
+    private String sex;
+    private Float length;
 
-//    @OneToMany (mappedBy = "user")
-//    private Set<UserWeight> weights;
-
+//    private LocalDate birthDay;
 //    private String userName;
 //    private String password;
-//    private LocalDate birthDay;
-//    private char sex;
-//    private double length;
 
 
     //CONSTRUCTORS
     public User(){}
-    public User(String name){
-        this.name = name;
-    }
-    public User(String name, String email){
-        this.name = name;
-        this.email = email;
-    }
 
     //GETTERS & SETTERS
     public long getId(){return id;}
-    public void setId(long id) {
-        this.id = id;
-    }
     public String getEmail() {
         return email;
     }
@@ -55,13 +42,18 @@ public class User {
     public void setname(String name) {
         this.name = name;
     }
-//    public Set<UserWeight> getWeights() {
-//        return weights;
-//    }
-//    public void setWeights(Set<UserWeight> weights) {
-//        this.weights = weights;
-//    }
-
+    public String getSex() {
+        return sex;
+    }
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+    public Float getLength() {
+        return length;
+    }
+    public void setLength(Float length) {
+        this.length = length;
+    }
 
 //    public String getUserName() {
 //        return userName;
@@ -87,19 +79,6 @@ public class User {
 //    public void setBirthDay(LocalDate birthDay) {
 //        this.birthDay = birthDay;
 //    }
-//    public char getSex() {
-//        return sex;
-//    }
-//    public void setSex(char sex) {
-//        this.sex = sex;
-//    }
-//    public double getLength() {
-//        return length;
-//    }
-//    public void setLength(double length) {
-//        this.length = length;
-//    }
-
 
     //TOSTRING OVERRIDE
 

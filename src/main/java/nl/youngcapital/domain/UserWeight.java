@@ -18,30 +18,34 @@ public class UserWeight {
 
     @ManyToOne(fetch=FetchType.EAGER)
     private User user;
-    private float value;
+
+    private float BMI;
+    private Float value;
     private LocalDate date;
 
     //CONSTRUCTORS
-    public UserWeight(){
+    public UserWeight() {
         this.date = LocalDate.now();
     }
-    public UserWeight(float value, User user){
+
+    public UserWeight(User user, Float value) {
+        this.date = LocalDate.now();
         this.value = value;
         this.user = user;
-        this.date = LocalDate.now();
+        
+        float userLengthMeter = user.getLength()/100;
+        float BMI =value / (userLengthMeter * userLengthMeter);
+        this.BMI = Math.round(BMI * 10) / 10.0f;
     }
 
     //GETTERS & SETTERS
     public long getId() {
         return id;
     }
-    public void setId(long id) {
-        this.id = id;
-    }
-    public float getValue() {
+    public Float getValue() {
         return value;
     }
-    public void setValue(float value) {
+    public void setValue(Float value) {
         this.value = value;
     }
     public LocalDate getDate() {
@@ -55,5 +59,11 @@ public class UserWeight {
     }
     public void setUser(User user) {
         this.user = user;
+    }
+    public float getBMI() {
+        return BMI;
+    }
+    public void setBMI(float BMI) {
+        this.BMI = BMI;
     }
 }
