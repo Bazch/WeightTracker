@@ -1,5 +1,7 @@
 package nl.youngcapital.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -20,6 +22,10 @@ public class User {
     private String sex;
     private Float length;
 
+    @JsonManagedReference
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<UserWeight> userWeights;
+
 //    private LocalDate birthDay;
 //    private String userName;
 //    private String password;
@@ -39,7 +45,7 @@ public class User {
     public String getName() {
         return name;
     }
-    public void setname(String name) {
+    public void setName(String name) {
         this.name = name;
     }
     public String getSex() {
@@ -54,6 +60,13 @@ public class User {
     public void setLength(Float length) {
         this.length = length;
     }
+    public List<UserWeight> getUserWeights() {
+        return userWeights;
+    }
+    public void setUserWeights(List<UserWeight> userWeights) {
+        this.userWeights = userWeights;
+    }
+
 
 //    public String getUserName() {
 //        return userName;

@@ -31,9 +31,6 @@ public class UserWeightController {
         userWeightService.save(userWeight);
     }
 
-    @GetMapping(path = "/users/{name}/weights")
-    public Iterable<UserWeight> findByUserName(@PathVariable String name){return userWeightService.findByUserName(name);}
-
 //    @GetMapping(path = "/users/{id}/weights")
 //    public Iterable<UserWeight> findByUserId(@PathVariable long id){return userWeightService.findByUserId(id);}
 
@@ -67,4 +64,5 @@ public class UserWeightController {
                 userWeightService.save(userWeight),
                 HttpStatus.OK);
     }
+
 }

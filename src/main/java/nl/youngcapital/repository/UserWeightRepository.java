@@ -8,7 +8,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserWeightRepository extends CrudRepository<UserWeight, Long> {
 
-    public Iterable<UserWeight> findByUserId(long id);
-    public Iterable<UserWeight> findByUserName(String name);
-
 }

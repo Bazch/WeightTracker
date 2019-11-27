@@ -31,10 +31,6 @@ public class UserWeightService {
         return userWeightRepository.findById(id);
     }
 
-    public Iterable<UserWeight> findByUserId(long id) {return userWeightRepository.findByUserId(id);}
-
-    public Iterable<UserWeight> findByUserName(String name) {return userWeightRepository.findByUserName(name);}
-
 
     /*Filling the Database from the backend!
 *    @PostConstruct

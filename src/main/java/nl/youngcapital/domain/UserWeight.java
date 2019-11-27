@@ -1,6 +1,7 @@
 package nl.youngcapital.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import nl.youngcapital.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,6 +17,7 @@ public class UserWeight {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @JsonBackReference
     @ManyToOne(fetch=FetchType.EAGER)
     private User user;
 
@@ -32,7 +34,7 @@ public class UserWeight {
         this.date = LocalDate.now();
         this.value = value;
         this.user = user;
-        
+
         float userLengthMeter = user.getLength()/100;
         float BMI =value / (userLengthMeter * userLengthMeter);
         this.BMI = Math.round(BMI * 10) / 10.0f;
@@ -65,5 +67,11 @@ public class UserWeight {
     }
     public void setBMI(float BMI) {
         this.BMI = BMI;
+    }
+
+
+    @Override
+    public String toString(){
+        return "weight: +"+value+" date: "+date;
     }
 }
