@@ -39,7 +39,12 @@ public class UserWeightService {
 *        UserWeight userWeight;
 *
 *        user = userService.save(new User("Bas", "basv_db@hotmail.com"));
-*        userWeightRepository.save(new UserWeight(70, user));
+*        userWeightRepository.save(new UserWeight(70, user, 20-11-2019));
+*        userWeightRepository.save(new UserWeight(80, user, 19-11-2019));
+*        userWeightRepository.save(new UserWeight(60, user, 18-11-2019));
+*        userWeightRepository.save(new UserWeight(90, user, 17-11-2019));
+*        userWeightRepository.save(new UserWeight(100, user, 16-11-2019));
+*        userWeightRepository.save(new UserWeight(100, user, 15-11-2019));
 *
 *    }
 */

@@ -94,7 +94,6 @@ public class User {
 //    }
 
     //TOSTRING OVERRIDE
-
     @Override
     public String toString() {
         return "naam: "+name+" email: "+email;
