@@ -33,6 +33,12 @@ public class User {
 
     //CONSTRUCTORS
     public User(){}
+    public User(String name, String email, String sex, Float length){
+        this.name = name;
+        this.email = email;
+        this.sex = sex;
+        this.length = length;
+    }
 
     //GETTERS & SETTERS
     public long getId(){return id;}

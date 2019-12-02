@@ -40,13 +40,12 @@ public class UserWeight {
         this.BMI = Math.round(BMI * 10) / 10.0f;
     }
 
-    public UserWeight(User user, Float value, LocalDate date){
+    public UserWeight(Float value, User user, String date){
         this.value = value;
         this.user = user;
-        this.date = date;
-
+        this.date = LocalDate.parse(date);
         float userLengthMeter = user.getLength()/100;
-        float BMI =value / (userLengthMeter * userLengthMeter);
+        float BMI = value / (userLengthMeter * userLengthMeter);
         this.BMI = Math.round(BMI * 10) / 10.0f;
     }
 
