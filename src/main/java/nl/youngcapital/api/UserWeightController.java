@@ -13,29 +13,26 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping (path = "weights")
 public class UserWeightController {
 
     @Autowired
     UserWeightService userWeightService;
 
-    @GetMapping("/weights")
+    @GetMapping
     public ResponseEntity<Iterable<UserWeight>> apiGetAll() {
         return new ResponseEntity<Iterable<UserWeight>>(
                 userWeightService.findAll(),
                 HttpStatus.OK);
     }
 
-    @PostMapping("/weights")
+    @PostMapping
     void addUserWeight(@RequestBody UserWeight u) {
         UserWeight userWeight = new UserWeight(u.getUser(), u.getValue());
         userWeightService.save(userWeight);
     }
 
-//    @GetMapping(path = "/users/{id}/weights")
-//    public Iterable<UserWeight> findByUserId(@PathVariable long id){return userWeightService.findByUserId(id);}
-
-
-    @GetMapping(path = "/weights/{id}")
+    @GetMapping(path = "/{id}")
     public ResponseEntity<Optional<UserWeight>> apiGetById(
             @PathVariable long id) {
         Optional<UserWeight> userWeight = userWeightService.findById(id);
@@ -46,9 +43,9 @@ public class UserWeightController {
                         : HttpStatus.NOT_FOUND);
     }
 
-    @PutMapping(path = "/weights/{id}")        // Update
+    @PutMapping(path = "/{id}")        // Update
     public ResponseEntity<UserWeight> apiUpdate(
-            @PathVariable("/weights/id") long id,
+            @PathVariable("/id") long id,
             @RequestBody UserWeight userWeight) {
         if (userWeight == null || userWeight.getId() != id)
             return new ResponseEntity<>(
@@ -64,7 +61,7 @@ public class UserWeightController {
                 HttpStatus.OK);
     }
 
-    @DeleteMapping(path = "/weights/{userWeightId}")
+    @DeleteMapping(path = "{userWeightId}")
     public void delete(@PathVariable Long userWeightId) {
         userWeightService.delete(userWeightId);
     }
