@@ -32,4 +32,8 @@ public class UserWeightService {
         return userWeightRepository.findById(id);
     }
 
+    public void delete(Long userWeightId) {
+        userWeightRepository.deleteById(userWeightId);
+    }
+
 }

@@ -18,7 +18,7 @@ public class UserWeightController {
     @Autowired
     UserWeightService userWeightService;
 
-    @GetMapping ("/weights")
+    @GetMapping("/weights")
     public ResponseEntity<Iterable<UserWeight>> apiGetAll() {
         return new ResponseEntity<Iterable<UserWeight>>(
                 userWeightService.findAll(),
@@ -27,7 +27,7 @@ public class UserWeightController {
 
     @PostMapping("/weights")
     void addUserWeight(@RequestBody UserWeight u) {
-        UserWeight userWeight = new UserWeight(u.getUser() , u.getValue());
+        UserWeight userWeight = new UserWeight(u.getUser(), u.getValue());
         userWeightService.save(userWeight);
     }
 
@@ -35,8 +35,7 @@ public class UserWeightController {
 //    public Iterable<UserWeight> findByUserId(@PathVariable long id){return userWeightService.findByUserId(id);}
 
 
-
-    @GetMapping (path ="/weights/{id}")
+    @GetMapping(path = "/weights/{id}")
     public ResponseEntity<Optional<UserWeight>> apiGetById(
             @PathVariable long id) {
         Optional<UserWeight> userWeight = userWeightService.findById(id);
@@ -47,7 +46,7 @@ public class UserWeightController {
                         : HttpStatus.NOT_FOUND);
     }
 
-    @PutMapping(path="/weights/{id}")		// Update
+    @PutMapping(path = "/weights/{id}")        // Update
     public ResponseEntity<UserWeight> apiUpdate(
             @PathVariable("/weights/id") long id,
             @RequestBody UserWeight userWeight) {
@@ -64,5 +63,12 @@ public class UserWeightController {
                 userWeightService.save(userWeight),
                 HttpStatus.OK);
     }
+
+    @DeleteMapping(path = "/weights/{userWeightId}")
+    public void delete(@PathVariable Long userWeightId) {
+        userWeightService.delete(userWeightId);
+    }
+
+
 
 }

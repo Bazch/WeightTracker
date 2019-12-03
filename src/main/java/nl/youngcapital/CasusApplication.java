@@ -30,7 +30,7 @@ public class CasusApplication implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		User user = createUser("Henk", "Henk@devries.nl", "M", 171.0f);
+		User user = createUser("Paul", "Paul@alien.nl", "M", 186.0f);
 		createUserWeight(80.0f, user, "2019-05-15");
 		createUserWeight(76.0f, user, "2019-06-10");
 		createUserWeight(70.0f, user, "2019-07-20");
