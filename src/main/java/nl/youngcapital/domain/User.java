@@ -21,6 +21,8 @@ public class User {
     private String email;
     private String sex;
     private Float length;
+    private String userName;
+    private String password;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
@@ -33,11 +35,13 @@ public class User {
 
     //CONSTRUCTORS
     public User(){}
-    public User(String name, String email, String sex, Float length){
+    public User(String userName, String password,String name, String email, String sex, Float length){
         this.name = name;
         this.email = email;
         this.sex = sex;
         this.length = length;
+        this.userName = userName;
+        this.password = password;
     }
 
     //GETTERS & SETTERS
@@ -74,18 +78,18 @@ public class User {
     }
 
 
-//    public String getUserName() {
-//        return userName;
-//    }
-//    public void setUserName(String userName) {
-//        this.userName = userName;
-//    }
-//    public String getPassword() {
-//        return password;
-//    }
-//    public void setPassword(String password) {
-//        this.password = password;
-//    }
+    public String getUserName() {
+        return userName;
+    }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 //    public String getLastName() {
 //        return lastName;
 //    }
