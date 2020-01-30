@@ -33,6 +33,10 @@ public class UserService {
         return userRepository.findByName(name);
     }
 
+    public boolean existsByEmail(String email) {
+        return userRepository.existsByEmail(email);
+    }
+
     public void delete(Long userId) {
         userRepository.deleteById(userId);
     }
