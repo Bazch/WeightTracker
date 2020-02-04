@@ -3,6 +3,7 @@ package nl.youngcapital.api;
 import nl.youngcapital.domain.User;
 import nl.youngcapital.domain.UserWeight;
 import nl.youngcapital.repository.UserRepository;
+import nl.youngcapital.service.JwtUserDetailsService;
 import nl.youngcapital.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,29 +15,31 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping(path = "users")
 public class UserController {
 
     @Autowired
     UserService userService;
 
-    @GetMapping
+    @Autowired
+    JwtUserDetailsService jwtUserDetailsService;
+
+    @GetMapping(path = "/api/v1/users")
     public List<User> getUsers() {
         return (List<User>) userService.findAll();
     }
 
 
-    @GetMapping(path = "/name/{name}")
+    @GetMapping(path = "/api/v1/users/name/{name}")
     public Iterable<User> findByName(@PathVariable String name) {
         return userService.findByName(name);
     }
 
-    @GetMapping(path = "/email/{email}")
+    @GetMapping(path = "/api/v1/users/email/{email}")
     public boolean existsByEmail(@PathVariable String email) {
         return userService.existsByEmail(email);
     }
 
-    @GetMapping (path ="/{id}")
+    @GetMapping (path ="/api/v1/users/{id}")
     public ResponseEntity<Optional<User>> apiGetById(
             @PathVariable long id) {
         Optional<User> user = userService.findById(id);
@@ -47,14 +50,14 @@ public class UserController {
                         : HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping
+    @PostMapping (path="/register")
     void addUser(@RequestBody User user) {
-        userService.save(user);
+         jwtUserDetailsService.save(user);
     }
 
-    @PutMapping(path="/{id}")		// Update
+    @PutMapping(path="/api/v1/users/{id}")		// Update
     public ResponseEntity<User> apiUpdate(
-            @PathVariable("users/id") long id,
+            @PathVariable("/api/v1/users/id") long id,
             @RequestBody User user) {
         if (user == null || user.getId() != id)
             return new ResponseEntity<>(
@@ -70,7 +73,7 @@ public class UserController {
                 HttpStatus.OK);
     }
 
-    @DeleteMapping(path="/{userId}")
+    @DeleteMapping(path="/api/v1/users/{userId}")
     public void delete(@PathVariable Long userId) {
         userService.delete(userId);
     }

@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping (path = "weights")
+@RequestMapping (path = "/api/v1/weights")
 public class UserWeightController {
 
     @Autowired

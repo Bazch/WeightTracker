@@ -21,26 +21,22 @@ public class User {
     private String email;
     private String sex;
     private Float length;
-    private String userName;
+    @Column(unique = true)
+    private String username;
     private String password;
-
     @JsonManagedReference
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<UserWeight> userWeights;
 
-//    private LocalDate birthDay;
-//    private String userName;
-//    private String password;
-
 
     //CONSTRUCTORS
     public User(){}
-    public User(String userName, String password,String name, String email, String sex, Float length){
+    public User(String username, String password,String name, String email, String sex, Float length){
         this.name = name;
         this.email = email;
         this.sex = sex;
         this.length = length;
-        this.userName = userName;
+        this.username = username;
         this.password = password;
     }
 
@@ -76,13 +72,11 @@ public class User {
     public void setUserWeights(List<UserWeight> userWeights) {
         this.userWeights = userWeights;
     }
-
-
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String userName) {
+        this.username = userName;
     }
     public String getPassword() {
         return password;
@@ -90,6 +84,8 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
 //    public String getLastName() {
 //        return lastName;
 //    }
