@@ -3,6 +3,7 @@ package nl.youngcapital;
 import nl.youngcapital.domain.User;
 import nl.youngcapital.domain.UserWeight;
 import nl.youngcapital.repository.UserRepository;
+import nl.youngcapital.service.JwtUserDetailsService;
 import nl.youngcapital.service.UserService;
 import nl.youngcapital.service.UserWeightService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class CasusApplication implements ApplicationRunner {
 	UserWeightService userWeightService;
 
 	@Autowired
-	UserService userService;
+	JwtUserDetailsService jwtUserDetailsService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CasusApplication.class, args);
@@ -42,24 +43,11 @@ public class CasusApplication implements ApplicationRunner {
 
 	public User createUser(String u, String p,String n, String e, String s, Float l){
 		User user = new User(u, p, n, e, s, l);
-		return userService.save(user);
+		return jwtUserDetailsService.save(user);
 	}
 	public UserWeight createUserWeight(Float f, User u, String d){
 		UserWeight userWeight = new UserWeight(f, u, d);
 		return userWeightService.save(userWeight);
 	}
 
-/*	Test to see if the database is being filled
-*
-* 	@Bean
-*	CommandLineRunner init(UserRepository userRepository) {
-*		return args -> {
-*			Stream.of("John", "Julie", "Jennifer", "Helen", "Rachel").forEach(name -> {
-*				User user = new User(name, name.toLowerCase() + "@domain.com");
-*				userRepository.save(user);
-*   		});
-*			userRepository.findAll().forEach(System.out::println);
-*		};
-*	}
-*/
 }

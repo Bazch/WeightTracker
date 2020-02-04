@@ -28,7 +28,7 @@ public class UserWeightController {
 
     @PostMapping
     void addUserWeight(@RequestBody UserWeight u) {
-        UserWeight userWeight = new UserWeight(u.getUser(), u.getValue());
+        UserWeight userWeight = new UserWeight(u.getUser(), u.getValue(), u.getDate());
         userWeightService.save(userWeight);
     }
 
