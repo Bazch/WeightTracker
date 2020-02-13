@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "http://bazch.github.io")
+@CrossOrigin
 @RequestMapping (path = "/api/v1/weights")
 public class UserWeightController {
 
