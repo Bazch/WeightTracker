@@ -31,13 +31,17 @@ public class CasusApplication implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		User user = createUser("PaulAlien", "aliensrule", "Paul", "Paul@alien.nl", "M", 186.0f);
-		createUserWeight(80.0f, user, "2019-05-15");
-		createUserWeight(76.0f, user, "2019-06-10");
-		createUserWeight(70.0f, user, "2019-07-20");
-		createUserWeight(66.0f, user, "2019-08-18");
-		createUserWeight(70.0f, user, "2019-09-03");
-		createUserWeight(85.0f, user, "2019-10-20");
+
+		/* To add a demouser to the database. Does not work with option 'update',
+			since it will keep creating the same user */
+
+//		User user = createUser("PaulAlien", "aliensrule", "Paul", "Paul@alien.nl", "M", 186.0f);
+//		createUserWeight(80.0f, user, "2019-05-15");
+//		createUserWeight(76.0f, user, "2019-06-10");
+//		createUserWeight(70.0f, user, "2019-07-20");
+//		createUserWeight(66.0f, user, "2019-08-18");
+//		createUserWeight(70.0f, user, "2019-09-03");
+//		createUserWeight(85.0f, user, "2019-10-20");
 
 	}
 
