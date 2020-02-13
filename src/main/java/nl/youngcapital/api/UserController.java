@@ -39,12 +39,12 @@ public class UserController {
         return userService.findByUsername(name);
     }
 
-    @GetMapping(path = "/api/v1/users/email/{email}")
+    @GetMapping(path = "/register/email/{email}")
     public boolean existsByEmail(@PathVariable String email) {
         return userService.existsByEmail(email);
     }
 
-    @GetMapping(path = "/api/v1/users/username/{username}")
+    @GetMapping(path = "/register/username/{username}")
     public boolean existsByUsername(@PathVariable String username) {
         return userService.existsByUsername(username);
     }
