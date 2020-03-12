@@ -87,7 +87,6 @@ public class UserWeight {
         this.BMI = BMI;
     }
 
-
     @Override
     public String toString(){
         return "weight: +"+value+" date: "+date;

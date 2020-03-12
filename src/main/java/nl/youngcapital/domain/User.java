@@ -11,7 +11,6 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name = "DBUser")
 public class User {
 
     //VARIABLES
@@ -28,6 +27,9 @@ public class User {
     @JsonManagedReference
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<UserWeight> userWeights;
+    @JsonManagedReference
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<UserLift> userLifts;
 
 
     //CONSTRUCTORS
@@ -85,20 +87,13 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+    public List<UserLift> getUserLifts() {
+        return userLifts;
+    }
+    public void setUserLifts(List<UserLift> userLifts) {
+        this.userLifts = userLifts;
+    }
 
-
-//    public String getLastName() {
-//        return lastName;
-//    }
-//    public void setLastName(String lastName) {
-//        this.lastName = lastName;
-//    }
-//    public LocalDate getBirthDay() {
-//        return birthDay;
-//    }
-//    public void setBirthDay(LocalDate birthDay) {
-//        this.birthDay = birthDay;
-//    }
 
     //TOSTRING OVERRIDE
     @Override
