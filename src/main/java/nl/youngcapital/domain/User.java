@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
+@Table(name = "DBUser")
 public class User {
 
     //VARIABLES
